@@ -19,6 +19,16 @@ h1{
     background-color: rgb(205, 41, 11);
 }
 
+footer{
+    background-color: whitesmoke;
+    text-align: center;
+    margin-top: 5px; 
+  }
+/* Landing Page */
+
+
+
+
 /* Product Page */
 
 .product-border{

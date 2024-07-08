@@ -48,39 +48,80 @@
 
     <main class="container-fluid mt-4">
         <h1 class="display-2 d-flex justify-content-center text-light">Candy Canes</h1>
-            <div class="container d-flex justify-content-center align-content-center">
-              <div class="row">
-        
+        <div class="container d-flex justify-content-center align-content-center">
+            <div class="row">
+
                 <h1 class="display-2"><span class="admin fw-bold">Admin</span></h1>
-              </div>
             </div>
-            <div>
-              <button class="btn btn-dark m-3" add-product>Add Product</button>
-              <table class="table">
+        </div>
+        <div>
+            <!-- <button class="btn btn-dark m-3" add-product>Add Product</button> -->
+            <div class="modal-Admin">
+                <button type="button" class="btn btn-dark m-3" data-bs-toggle="modal" data-bs-target="#exampleModal" add-product>
+                    Add Product
+                </button>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="addProductForm">
+                                    <div class="mb-3">
+                                        <label for="productName" class="form-label">Product Name</label>
+                                        <input type="text" class="form-control" id="productName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productPrice" class="form-label">Product Price</label>
+                                        <input type="number" class="form-control" id="productPrice" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="productImage" class="form-label">Product Image URL</label>
+                                        <input type="url" class="form-control" id="productImage" required>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="addProduct()">Save changes</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <table class="table">
                 <thead>
-                  <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Action</th>
-                  </tr>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
                 </thead>
                 <tbody admin-products></tbody>
-              </table>
-        
-              <div id="message"></div>
-        
-            </div>
-          </main>
-        
-          <footer class="container-fluid sticky-bottom">
-            <div class="row">
-              <p class="lead fw-bold">Candy Canes &copy;Copyright<span id="footer"></span></p>
-            </div>
-        
-          </footer>
-        
-        
+            </table>
+
+            <div id="message"></div>
+
+        </div>
+    </main>
+
+    <footer class="container-fluid sticky-bottom">
+        <div class="row">
+            <p class="lead fw-bold">Candy Canes &copy;<span id="footer"></span></p>
+        </div>
+
+    </footer>
+
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

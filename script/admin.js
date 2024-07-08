@@ -1,99 +1,129 @@
-// Admin
-let products = JSON.parse(localStorage.getItem('product')) || [];
+// Load products from localStorage or initialize an empty array
+let products = JSON.parse(localStorage.getItem('products')) || [];
 
-let tableContainer = document.querySelector('[admin-products]');
-function displayProducts(data) {
-  tableContainer.innerHTML = '';
-  try {
-    if (data) {
-      data.forEach((item, index) => {
-        tableContainer.innerHTML += `
-          <tr>
-            <td>${item.id}</td>
-            <td>${item.name}</td>
-            <td>R${item.price}</td>
-            <td>
-              <button type="button" class="btn btn-dark"
-              onclick='new EditProduct(${JSON.stringify(
-                item
-              )}, ${JSON.stringify(index)})'>Edit</button>
-              <button type="button" class="btn btn-secondary" onclick='deleteProduct(${JSON.stringify(
-                item
-              )})'>Delete</button>
-            </td>
-          </tr>
-        `;
-      });
+// Function to display products in the table
+function displayProducts() {
+    const tableContainer = document.querySelector('[admin-products]');
+    tableContainer.innerHTML = '';
+
+    if (products.length > 0) {
+        products.forEach((product, index) => {
+            tableContainer.innerHTML += `
+                <tr>
+                    <td>${product.id}</td>
+                    <td>${product.name}</td>
+                    <td>R${product.price.toFixed(2)}</td>
+                    <td>
+                        <button type="button" class="btn btn-dark" onclick="editProduct(${index})">Edit</button>
+                        <button type="button" class="btn btn-secondary" onclick="deleteProduct(${index})">Delete</button>
+                    </td>
+                </tr>
+            `;
+        });
     } else {
-      tableContainer.innerHTML = 'loading';
+        tableContainer.innerHTML = '<tr><td colspan="4">No products found</td></tr>';
     }
-  } catch (e) {
-    tableContainer.innerHTML = 'Please try again';
-  }
 }
-displayProducts(products);
-
-function showMessage(message, messageType) {
-  const messageContainer = document.getElementById('message');
-  messageContainer.innerHTML = `<div class="alert alert-${messageType}" role="alert">${message}</div>`;
-}
-
-function EditProduct(product, index) {
-  try {
-    if (product) {
-      const updatedName = prompt(
-        `Enter updated name for product ${product.name}:`,
-        product.name
-      );
-      const updatedDescription = prompt(
-        `Enter updated description for product ${product.description}:`,
-        product.description
-      );
-      const updatedPrice = prompt(
-        `Enter updated price for product ${product.price}:`,
-        product.price
-      );
-      const updatedImage = prompt(
-        `Enter the product image ${product.image}:`,
-        product.image
-      );
-      this.id = product.id;
-      this.name = updatedName;
-      this.description = updatedDescription;
-      this.price = updatedPrice;
-      this.image = updatedImage;
-
-      products[index] = Object.assign({}, this);
-      localStorage.setItem('product', JSON.stringify(products));
-      displayProducts(products);
-    } else {
-      console.log('Product was not found');
-    }
-  } catch (e) {
-    console.log(e.message);
-  }
-}
-
-function deleteProduct(product) {
-  const index = products.findIndex((item) => item.id === product.id);
-  if (index !== -1) {
-    console.log(index);
-    products.splice(index, 1);
-    localStorage.setItem('product', JSON.stringify(products));
-    displayProducts(products);
-  }
-}
-
+displayProducts()
+// Function to add a new product
 function addProduct() {
-  const newProduct = {
-    id: products.length + 1,
-    name: confirm,
-    description: confirm,
-    price: 0,
-  };
-  products.push(newProduct);
-  localStorage.setItem('product', JSON.stringify(products));
-  displayProducts();
+    const productName = document.getElementById('productName').value;
+    const productPrice = parseFloat(document.getElementById('productPrice').value);
+    const productImage = document.getElementById('productImage').value;
+
+    if (!productName || isNaN(productPrice) || !productImage) {
+        showMessage('Please fill out all fields', 'danger');
+        return;
+    }
+
+    const newProduct = {
+        id: products.length + 1,
+        name: productName,
+        price: productPrice,
+        image: productImage
+    };
+
+    products.push(newProduct);
+
+    // Update localStorage
+    localStorage.setItem('products', JSON.stringify(products));
+
+    // Update UI and reset form fields
+    displayProducts();
+    resetForm();
+
+    // Close modal
+    const modal = new bootstrap.Modal(document.getElementById('exampleModal'));
+    modal.hide();
+
+    // Show success message
+    showMessage('Product added successfully', 'success');
 }
 
+// Function to reset form fields
+function resetForm() {
+    document.getElementById('productName').value = '';
+    document.getElementById('productPrice').value = '';
+    document.getElementById('productImage').value = '';
+}
+
+// Function to edit a product
+function editProduct(index) {
+    const product = products[index];
+    if (!product) {
+        showMessage('Product not found', 'danger');
+        return;
+    }
+
+    const updatedName = prompt(`Enter updated name for product ${product.name}:`, product.name);
+    const updatedPrice = parseFloat(prompt(`Enter updated price for product ${product.price}:`, product.price));
+    const updatedImage = prompt(`Enter updated image URL for product ${product.image}:`, product.image);
+
+    if (updatedName && !isNaN(updatedPrice) && updatedImage) {
+        product.name = updatedName;
+        product.price = updatedPrice;
+        product.image = updatedImage;
+
+        // Update localStorage
+        localStorage.setItem('products', JSON.stringify(products));
+
+        // Update UI
+        displayProducts();
+
+        // Show success message
+        showMessage('Product updated successfully', 'success');
+    } else {
+        showMessage('Update cancelled or invalid input', 'danger');
+    }
+}
+
+// Function to delete a product
+function deleteProduct(index) {
+    if (index >= 0 && index < products.length) {
+        products.splice(index, 1);
+
+        // Update localStorage
+        localStorage.setItem('products', JSON.stringify(products));
+
+        // Update UI
+        displayProducts();
+
+        // Show success message
+        showMessage('Product deleted successfully', 'success');
+    } else {
+        showMessage('Product not found', 'danger');
+    }
+}
+
+// Function to display messages
+function showMessage(message, type) {
+    const messageContainer = document.getElementById('message');
+    messageContainer.innerHTML = `<div class="alert alert-${type}" role="alert">${message}</div>`;
+}
+
+// Initial display of products
+displayProducts();
+
+// Event listener for add product button
 document.querySelector('[add-product]').addEventListener('click', addProduct);
+displayProducts()
