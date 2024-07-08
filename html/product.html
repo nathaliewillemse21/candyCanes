@@ -48,29 +48,27 @@
 
     <main class="container-fluid mt-4">
         <h1 class="display-2 d-flex justify-content-center text-light">Candy Canes</h1>
-    
+        <div class="container d-flex justify-content-center align-content-center mb-3">
+            <div class="row">
+                <!-- Row for additional content if needed -->
+            </div>
+        </div>
 
+        <div class="container-product d-flex justify-content-around align-content-around mb-4">
+            <input type="search" placeholder="Search for Product" required class="form-control me-2" id="searchproduct">
+            <button class="btn btn-success" id="sortBtn">Sort</button>
+        </div>
 
-
+        <div class="row d-block d-md-flex justify-content-center gap-4" data-products></div>
     </main>
 
-
-
-
-    <footer class="container-fluid sticky-bottom"> 
-    <div class="row">
-    <p class="lead fw-bold">Candy Canes</p> &copy;Copyright<span id="footer" ></span></p>
-</div>
-  
-</footer>
-    
 
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <!-- Javascript -->
-    <script src="../script/code.js"></script>
+    <script src="../script/product.js"></script>
 </body>
 
 </html>

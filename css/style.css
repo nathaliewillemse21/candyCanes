@@ -1,0 +1,35 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1{
+    background-color: rgb(221, 239, 52);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+/* Navbar */
+.border{
+    border-style:dashed;
+    border-radius: 28%;
+    width: fit-content;
+    color: whitesmoke;
+    background-color: rgb(205, 41, 11);
+}
+
+/* Product Page */
+
+.product-border{
+    display: flex;
+    justify-content: center;
+    margin-left: 2rem;
+}
+.card{
+    width: fit-content;
+}
+
+.linebreak{
+    padding: 1rem;
+}
