@@ -51,12 +51,27 @@
     <!-- <h1 class="display-2 d-flex justify-content-center text-light">Candy Canes</h1> -->
 
 
+    <form
+    action="https://formspree.io/f/mblrjbvv"
+    method="POST"
+    class="mt-5"
+>
+    <div class="mb-3">
+        <label for="email" class="form-label">Your email:</label>
+        <input type="email" class="form-control" name="email" id="email" required>
+    </div>
+    <div class="mb-3">
+        <label for="message" class="form-label">Your message:</label>
+        <textarea class="form-control" name="message" id="message" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Send</button>
+</form>
 
     </main>
 
     <footer class="container-fluid sticky-bottom"> 
         <div class="row">
-        <p class="lead fw-bold">Candy Canes</p> &copy;Copyright<span id="footer" ></span></p>
+        <p class="lead fw-bold">Candy Canes &copy;<span id="footer" ></span></p>
     </div>
       
     </footer>
