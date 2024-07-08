@@ -1,45 +1,94 @@
 *,
 *::before,
 *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1{
-    background-color: rgb(221, 239, 52);
+h1 {
+    background-color: rgb(233, 60, 12);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-/* Navbar */
-.border{
-    border-style:dashed;
-    border-radius: 28%;
-    width: fit-content;
-    color: whitesmoke;
-    background-color: rgb(205, 41, 11);
+
+::-webkit-scrollbar {
+    display: none;
 }
 
-footer{
+/* Navbar */
+footer {
+    position: sticky-bottom;
     background-color: whitesmoke;
     text-align: center;
-    margin-top: 5px; 
-  }
+    margin-top: 5px;
+}
+
 /* Landing Page */
 
+.carousel-inner {
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+}
 
+
+/* About Page */
+@media screen and (width < 700px) {
+    .about-content {
+        font-style: italic;
+        /* color: antiquewhite; */
+        overflow-y: scroll;
+        height: 20rem;
+        scroll-snap-type: y mandatory;
+    }
+}
+
+.bordered-paragraph {
+    border: 2px solid #ccc;
+    /* Border color and width */
+    border-radius: 15px;
+    /* Adjust border-radius to make the corners more or less rounded */
+    padding: 20px;
+    /* Padding inside the border */
+    width: fit-content;
+    /* Adjust width as needed */
+    margin: 25px 50px 75px 100px;
+}
+
+@media screen and (max-width: 700px) {
+    .bordered-paragraph {
+        margin: 10px;
+        /* Adjust margin for smaller screens */
+        padding: 15px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .about-content {
+        font-style: italic;
+        overflow-y: scroll;
+        height: 20rem;
+        /* Limit height with scrolling on smaller screens */
+        scroll-snap-type: y mandatory;
+    }
+}
 
 
 /* Product Page */
 
-.product-border{
+.product-border {
     display: flex;
     justify-content: center;
     margin-left: 2rem;
 }
-.card{
-    width: fit-content;
+
+.card {
+    width: 15rem;
 }
 
-.linebreak{
+.linebreak {
     padding: 1rem;
 }
+
+/* img{    
+    width: 100px;
+} */

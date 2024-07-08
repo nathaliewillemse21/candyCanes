@@ -37,14 +37,17 @@ function displayProducts() {
     if (Products.length > 0) {
         Products.forEach((product) => {
             productWrapper.innerHTML += `
+  <div class="col mb-4">
                 <div class="card">
-                    <img src="${product.image}" class="card-img-top" alt="${product.id}">
+                    <img src="${product.image}" class="card-img-top img-fluid" style="width: 15rem; height: auto;" alt="${product.id}">
                     <div class="card-body">
                         <h5 class="card-title">${product.name}</h5>
                         <p class="card-text">${product.price}</p>
                         <button class="btn btn-dark" data-add-to-cart="${product.id}">Add to Cart</button>
                     </div>
-                </div>`;
+                </div>
+                </div>
+                `;
         });
     } else {
         productWrapper.innerHTML = '<p>No products found</p>';
@@ -71,13 +74,15 @@ function displaySearchResults(results) {
 
     results.forEach((item) => {
         productWrapper.innerHTML += `
+  <div class="col mb-4">
             <div class="card">
-                <img src="${item.image}" class="card-img-top" alt="${item.id}">
+                <img src="${item.image}" class="card-img-top img-fluid" style="width: 15rem; height: auto;" alt="${item.id}">
                 <div class="card-body">
                     <h5 class="card-title">${item.name}</h5>
                     <p class="card-text">${item.price}</p>
                     <button class="btn btn-dark" data-add-to-cart="${item.id}">Add to Cart</button>
                 </div>
+            </div>
             </div>`;
     });
 }
